@@ -25,7 +25,7 @@ class ListActivity : AppCompatActivity() {
         buttonLogout!!.setOnClickListener {
             logout()
         }
-        //test
+        
     }
 
     override fun onStart() {
