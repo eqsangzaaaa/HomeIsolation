@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".ForgetActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create New Account"
-            android:textSize="38sp" />
+            android:text="Forget your password?"
+            android:textSize="34sp" />
 
         <EditText
-            android:id="@+id/txtEmailCreate"
+            android:id="@+id/txtEmailForget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -35,28 +35,10 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/txtPasswordCreate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/txtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Full Name"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
-
         <Button
-            android:id="@+id/buttonSubmit"
+            android:id="@+id/buttonReset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="Forget Password" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

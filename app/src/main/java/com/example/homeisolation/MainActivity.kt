@@ -3,18 +3,21 @@ package com.example.homeisolation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
     lateinit var txtEmail: EditText
     lateinit var txtPassword: EditText
     lateinit var buttonLogin: Button
     lateinit var buttonRegister: Button
+    lateinit var buttonForget: Button
 
     lateinit var email:String
     lateinit var password:String
@@ -28,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         txtPassword = findViewById<EditText>(R.id.txtPassword)
         buttonLogin = findViewById<Button>(R.id.buttonLogin)
         buttonRegister = findViewById<Button>(R.id.buttonRegister)
+        buttonForget = findViewById<Button>(R.id.buttonForget)
+
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -37,7 +42,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonLogin!!.setOnClickListener {
-            signIn()
+            if(TextUtils.isEmpty(txtEmail!!.text.toString())){
+                Toast.makeText(applicationContext,"Please Enter your Email!!",Toast.LENGTH_SHORT).show()
+            }else {
+                if(TextUtils.isEmpty(txtPassword!!.text.toString())){
+                    Toast.makeText(applicationContext,"Please Enter your Password!!",Toast.LENGTH_SHORT).show()
+                }else {
+                    signIn()
+                }
+            }
+        }
+
+        buttonForget!!.setOnClickListener {
+            val intent = Intent(this,ForgetActivity::class.java)
+            startActivity(intent)
         }
     }
     override fun onStart() {
