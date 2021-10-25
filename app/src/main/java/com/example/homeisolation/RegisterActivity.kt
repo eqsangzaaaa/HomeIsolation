@@ -36,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance("https://homeisolationo2auth-default-rtdb.asia-southeast1.firebasedatabase.app/")
         buttonSubmit!!.setOnClickListener {
             if(TextUtils.isEmpty(txtEmailCreate.text.toString()) || TextUtils.isEmpty(txtPasswordCreate.text.toString())){
-                Toast.makeText(applicationContext,"Please Enter your Email and password",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Please Enter your E-mail and password",Toast.LENGTH_SHORT).show()
             }else {
                 createAccount()
             }
