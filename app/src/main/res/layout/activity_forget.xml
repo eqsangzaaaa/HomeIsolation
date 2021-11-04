@@ -23,7 +23,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forget your password?"
+            android:text="ลืมรหัสผ่าน"
             android:textSize="34sp" />
 
         <EditText
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email Address"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
@@ -39,6 +39,6 @@
             android:id="@+id/buttonReset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forget Password" />
+            android:text="ส่ง Email" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

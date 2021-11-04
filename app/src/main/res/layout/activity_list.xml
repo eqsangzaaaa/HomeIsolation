@@ -33,11 +33,17 @@
             android:text="Welcome"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/buttonLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Logout" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:text="ออกจากระบบ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="34dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

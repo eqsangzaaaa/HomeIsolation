@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="30dp"
@@ -23,7 +25,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign-In"
+            android:text="ลงชื่อเข้าใช้"
             android:textSize="42sp" />
 
         <EditText
@@ -31,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email Address"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
@@ -48,20 +50,20 @@
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign-in" />
+            android:text="ลงชื่อเข้าใช้" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="or" />
+            android:text="หรือ" />
 
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Regist New Account" />
+            android:text="สมัครสมาชิก" />
 
         <TextView
             android:id="@+id/textView5"
@@ -69,13 +71,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Forget your password?" />
+            android:text="จำรหัสผ่านไม่ได้ ?" />
 
         <Button
             android:id="@+id/buttonForget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forget Password" />
+            android:text="ลืมรหัสผ่าน" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/cardiogram" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
