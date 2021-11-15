@@ -20,12 +20,12 @@ class ForgetActivity : AppCompatActivity() {
         txtEmailForget = findViewById<EditText>(R.id.txtEmailForget)
         buttonReset = findViewById<Button>(R.id.buttonReset)
 
-        buttonReset!!.setOnClickListener {
+        buttonReset.setOnClickListener {
             val email = txtEmailForget.text.toString()
             if(TextUtils.isEmpty(email)){
                 Toast.makeText(applicationContext,"Please Enter your Email!!",Toast.LENGTH_SHORT).show()
             }else{
-                mAuth!!.sendPasswordResetEmail(email).addOnCompleteListener {
+                mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
                     task -> if(task.isSuccessful){
                     Toast.makeText(this@ForgetActivity,"Please Check your Email",Toast.LENGTH_SHORT).show()
                     }else{

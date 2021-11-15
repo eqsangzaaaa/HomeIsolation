@@ -46,11 +46,11 @@ class ListActivity : AppCompatActivity() {
         textUsername = header.findViewById(R.id.user_name)
 
         mAuth = FirebaseAuth.getInstance()
+        navigationView.findViewById<Button>(R.id.logout).setOnClickListener {
+            logout()
+        }
 
-//        buttonLogout!!.setOnClickListener {
-//            logout()
-//        }
-        Log.d("ListActivity onCreate", "User Sucess!")
+        Log.d("ListActivity onCreate", "User Success!")
 
 
     }
@@ -64,8 +64,8 @@ class ListActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
-            Log.d("ListActivity", "User Sucess!"+user.email)
-            textUsername.setText(user.email)
+            Log.d("ListActivity", "User Success!"+user)
+            textUsername.text = user.email
             return
         }
     }

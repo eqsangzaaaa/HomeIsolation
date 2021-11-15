@@ -52,6 +52,22 @@
             android:hint="ชื่อ"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="ที่อยู่"
+            android:inputType="textPostalAddress"
+            android:minHeight="48dp" />
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="เบอร์โทร"
+            android:inputType="phone"
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/buttonSubmit"

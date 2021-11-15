@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:icon="@mipmap/ic_one"
+            android:icon="@drawable/ic_baseline_home_24"
             android:id="@+id/firstFragment"
             android:title="Home"/>
         <item
-            android:icon="@mipmap/ic_two"
+            android:icon="@drawable/ic_baseline_history_24"
             android:id="@+id/secondFragment"
-            android:title="Second"/>
+            android:title="History"/>
     </group>
 </menu>

@@ -10,10 +10,15 @@
 
     <TextView
         android:id="@+id/user_name"
-        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:width="0dp"
         android:layout_height="wrap_content"
         android:text="Mr. XYZ"
+        android:lines="1"
         android:autoSizeTextType="uniform"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,9 +28,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:width="0dp"
         android:layout_height="wrap_content"
         android:text="Home Isolation"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="@color/browser_actions_text_color"
         app:layout_constraintLeft_toLeftOf="@id/user_name"

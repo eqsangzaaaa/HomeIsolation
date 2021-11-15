@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        buttonLogin!!.setOnClickListener {
-            if(TextUtils.isEmpty(txtEmail!!.text.toString())){
+        buttonLogin.setOnClickListener {
+            if(TextUtils.isEmpty(txtEmail.text.toString())){
                 Toast.makeText(applicationContext,"Please Enter your Email!!",Toast.LENGTH_SHORT).show()
             }else {
-                if(TextUtils.isEmpty(txtPassword!!.text.toString())){
+                if(TextUtils.isEmpty(txtPassword.text.toString())){
                     Toast.makeText(applicationContext,"Please Enter your Password!!",Toast.LENGTH_SHORT).show()
                 }else {
                     signIn()
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        buttonForget!!.setOnClickListener {
+        buttonForget.setOnClickListener {
             val intent = Intent(this,ForgetActivity::class.java)
             startActivity(intent)
         }
@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun signIn() {
-        email = txtEmail!!.text.toString()
-        password = txtPassword!!.text.toString()
+        email = txtEmail.text.toString()
+        password = txtPassword.text.toString()
         mAuth!!.signInWithEmailAndPassword(email,password).addOnCompleteListener(this) {
                 task -> if (task.isSuccessful){
             Log.d("MyApp","SignIn SuccessFul!")
