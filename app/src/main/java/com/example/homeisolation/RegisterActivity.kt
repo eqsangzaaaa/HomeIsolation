@@ -11,6 +11,16 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.UserProfileChangeRequest
+
+
+import com.google.android.gms.tasks.OnCompleteListener
+
+
+
+
+
+
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var txtEmailCreate: EditText
@@ -67,10 +77,21 @@ class RegisterActivity : AppCompatActivity() {
 
         mAuth!!.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
+
                 Log.d("MyApp", "Create New User Success!")
                 val user = mAuth!!.currentUser
-                database.reference.child("users").child(user!!.uid).setValue(User(user.uid,user.email,name,address,phone))
-                updateUI(user)
+                val profileUpdate = UserProfileChangeRequest.Builder()
+                    .setDisplayName(name.trim()).build()
+                user!!.updateProfile(profileUpdate)
+                    .addOnCompleteListener(OnCompleteListener<Void?> { task ->
+                        if (task.isSuccessful) {
+                            database.reference.child("users").child(user!!.uid).setValue(User(user.uid,user.email,name,address,phone))
+                            updateUI(user)
+                        }else{
+                            Log.w("MyApp", "Failure Process", task.exception)
+                        }
+                    })
+
             } else {
                 Log.w("MyApp", "Failure Process", task.exception)
                 Toast.makeText(this@RegisterActivity, "Authentication Failed", Toast.LENGTH_SHORT)
