@@ -13,6 +13,6 @@
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.example.homeisolation.SecondFragment"
-        android:label="fragment_second"
+        android:label="ข้อมูลสมาชิก"
         tools:layout="@layout/fragment_second" />
 </navigation>

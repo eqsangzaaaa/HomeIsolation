@@ -8,6 +8,6 @@
         <item
             android:icon="@drawable/ic_baseline_history_24"
             android:id="@+id/secondFragment"
-            android:title="History"/>
+            android:title="ข้อมูลสมาชิก"/>
     </group>
 </menu>

@@ -69,12 +69,7 @@ class RegisterActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 Log.d("MyApp", "Create New User Success!")
                 val user = mAuth!!.currentUser
-                val databaseReference = database.reference.child("users").push()
-                databaseReference.child("uid").setValue(user!!.uid)
-                databaseReference.child("email").setValue(user.email)
-                databaseReference.child("name").setValue(name)
-                databaseReference.child("address").setValue(address)
-                databaseReference.child("phone").setValue(phone)
+                database.reference.child("users").child(user!!.uid).setValue(User(user.uid,user.email,name,address,phone))
                 updateUI(user)
             } else {
                 Log.w("MyApp", "Failure Process", task.exception)
