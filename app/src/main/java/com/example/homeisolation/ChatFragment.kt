@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 
 
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -27,7 +28,7 @@ class ChatFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    var listView: ListView? = null
+    lateinit var listView: ListView
     var arrayList: ArrayList<String> = ArrayList()
     var arrayAdapter: ArrayAdapter<String>? = null
 
@@ -54,6 +55,8 @@ class ChatFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_chat, container, false)
         listView = view.findViewById(R.id.listViewChat)
+        arrayAdapter = ArrayAdapter<String>(view.context, android.R.layout.simple_list_item_1, arrayList)
+
         database.reference.child("users").child(user!!.uid).child("chat").get().addOnSuccessListener {
             if(it.exists()){
                 Log.d("firebase", "Got value ${it}")
