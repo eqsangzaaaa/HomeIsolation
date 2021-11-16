@@ -65,7 +65,7 @@ class ListActivity : AppCompatActivity() {
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
             Log.d("ListActivity", "User Success!"+user)
-            textUsername.text = user.email
+            textUsername.text = user.displayName
             return
         }
     }

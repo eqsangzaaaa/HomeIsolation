@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
-            val email = user.email
-            Toast.makeText(this@MainActivity,"สวัสดี : $email", Toast.LENGTH_SHORT).show()
+            val displayName = user.displayName
+            Toast.makeText(this@MainActivity,"สวัสดี : $displayName", Toast.LENGTH_SHORT).show()
             val intentSession  = Intent(this,ListActivity::class.java)
             startActivity(intentSession)
         }
