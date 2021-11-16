@@ -14,8 +14,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.HashMap
@@ -72,11 +74,9 @@ class SecondFragment : Fragment() {
         buttonUpdate.setOnClickListener {
             hideKeyboard()
             updateAccount()
-
         }
         if(user != null){
             getAccount()
-
         }
         // Inflate the layout for this fragment
 
@@ -84,15 +84,23 @@ class SecondFragment : Fragment() {
     }
 
     private fun updateAccount() {
-        database.reference.child("users").child(user!!.uid).setValue(User(user!!.uid,
-            user!!.email,txtName.text.toString(),txtAddress.text.toString(),txtPhone.text.toString())).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Log.d("update", "Update success ${it}")
-                Toast.makeText(getActivity(),"แก้ไขข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
-                getAccount()
-            }
-
-        }
+            val profileUpdate = UserProfileChangeRequest.Builder()
+                .setDisplayName(txtName.text.toString().trim()).build()
+            user!!.updateProfile(profileUpdate)
+                .addOnCompleteListener(OnCompleteListener<Void?> { task ->
+                    if (task.isSuccessful) {
+                        database.reference.child("users").child(user!!.uid).setValue(User(user!!.uid,
+                            user!!.email,txtName.text.toString(),txtAddress.text.toString(),txtPhone.text.toString())).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Log.d("update", "Update success ${it}")
+                                Toast.makeText(getActivity(),"แก้ไขข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
+                                getAccount()
+                            }
+                        }
+                    }else{
+                        Log.w("MyApp", "Failure Process", task.exception)
+                    }
+                })
     }
 
     private fun getAccount(){
