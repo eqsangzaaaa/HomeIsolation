@@ -62,11 +62,8 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
         val view =  inflater.inflate(R.layout.fragment_second, container, false)
         user = mAuth!!.currentUser
-//        txtUsername = view.findViewById<TextView>(R.id.txtUsername) as TextView
         txtName = view.findViewById<EditText>(R.id.txtName)
         txtAddress = view.findViewById<EditText>(R.id.address)
         txtPhone = view.findViewById<EditText>(R.id.phone)
@@ -78,8 +75,6 @@ class SecondFragment : Fragment() {
         if(user != null){
             getAccount()
         }
-        // Inflate the layout for this fragment
-
         return view
     }
 
@@ -110,6 +105,9 @@ class SecondFragment : Fragment() {
                 txtName.setText(it.child("name").value.toString())
                 txtAddress.setText(it.child("address").value.toString())
                 txtPhone.setText(it.child("phone").value.toString())
+
+                val listActivity: ListActivity = activity as ListActivity
+                listActivity.findViewById<TextView>(R.id.user_name).text = it.child("name").value.toString()
             }
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
