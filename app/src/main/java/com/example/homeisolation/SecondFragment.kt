@@ -14,9 +14,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.HashMap
@@ -46,6 +47,7 @@ class SecondFragment : Fragment() {
     lateinit var database: FirebaseDatabase
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -64,8 +66,6 @@ class SecondFragment : Fragment() {
 
         val view =  inflater.inflate(R.layout.fragment_second, container, false)
         user = mAuth!!.currentUser
-
-
 //        txtUsername = view.findViewById<TextView>(R.id.txtUsername) as TextView
         txtName = view.findViewById<EditText>(R.id.txtName)
         txtAddress = view.findViewById<EditText>(R.id.address)
@@ -74,11 +74,9 @@ class SecondFragment : Fragment() {
         buttonUpdate.setOnClickListener {
             hideKeyboard()
             updateAccount()
-
         }
         if(user != null){
             getAccount()
-
         }
         // Inflate the layout for this fragment
 
@@ -86,15 +84,23 @@ class SecondFragment : Fragment() {
     }
 
     private fun updateAccount() {
-        database.reference.child("users").child(user!!.uid).setValue(User(user!!.uid,
-            user!!.email,txtName.text.toString(),txtAddress.text.toString(),txtPhone.text.toString())).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Log.d("update", "Update success ${it}")
-                Toast.makeText(getActivity(),"แก้ไขข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
-                getAccount()
-            }
-
-        }
+            val profileUpdate = UserProfileChangeRequest.Builder()
+                .setDisplayName(txtName.text.toString().trim()).build()
+            user!!.updateProfile(profileUpdate)
+                .addOnCompleteListener(OnCompleteListener<Void?> { task ->
+                    if (task.isSuccessful) {
+                        database.reference.child("users").child(user!!.uid).setValue(User(user!!.uid,
+                            user!!.email,txtName.text.toString(),txtAddress.text.toString(),txtPhone.text.toString())).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Log.d("update", "Update success ${it}")
+                                Toast.makeText(getActivity(),"แก้ไขข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
+                                getAccount()
+                            }
+                        }
+                    }else{
+                        Log.w("MyApp", "Failure Process", task.exception)
+                    }
+                })
     }
 
     private fun getAccount(){
@@ -104,8 +110,6 @@ class SecondFragment : Fragment() {
                 txtName.setText(it.child("name").value.toString())
                 txtAddress.setText(it.child("address").value.toString())
                 txtPhone.setText(it.child("phone").value.toString())
-                val listActivity: ListActivity = activity as ListActivity
-                listActivity.findViewById<TextView>(R.id.user_name).text = it.child("name").value.toString()
             }
         }.addOnFailureListener{
             Log.e("firebase", "Error getting data", it)
