@@ -38,7 +38,7 @@ class ListActivity : AppCompatActivity() {
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         drawerLayout = findViewById(R.id.drawer_layout)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.firstFragment,R.id.secondFragment),drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.firstFragment,R.id.secondFragment,R.id.historyFragment,R.id.chatFragment),drawerLayout)
         findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController,appBarConfiguration)
         navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setupWithNavController(navController)

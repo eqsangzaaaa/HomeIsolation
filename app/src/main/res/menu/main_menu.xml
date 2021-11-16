@@ -2,12 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:icon="@drawable/ic_baseline_home_24"
+            android:icon="@drawable/ic_baseline_send_24"
             android:id="@+id/firstFragment"
-            android:title="Home"/>
+            android:title="ส่งข้อมูล"/>
+        <item
+            android:icon="@drawable/ic_baseline_history_24"
+            android:id="@+id/historyFragment"
+            android:title="ประวัติการส่งข้อมูล"/>
         <item
             android:icon="@drawable/ic_baseline_info_24"
             android:id="@+id/secondFragment"
-            android:title="ข้อมูลสมาชิก"/>
+            android:title="แก้ไขข้อมูลส่วนตัว"/>
+
+        <item
+            android:icon="@drawable/ic_baseline_chat_24"
+            android:id="@+id/chatFragment"
+            android:title="Chat"/>
     </group>
 </menu>

@@ -88,7 +88,7 @@ class SecondFragment : Fragment() {
             user!!.email,txtName.text.toString(),txtAddress.text.toString(),txtPhone.text.toString())).addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d("update", "Update success ${it}")
-                Toast.makeText(getActivity(),"Update success!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"แก้ไขข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
                 getAccount()
             }
 

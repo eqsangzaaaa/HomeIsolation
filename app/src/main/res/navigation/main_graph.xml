@@ -8,11 +8,21 @@
     <fragment
         android:id="@+id/firstFragment"
         android:name="com.example.homeisolation.FirstFragment"
-        android:label="Home"
+        android:label="ส่งข้อมูล"
         tools:layout="@layout/fragment_first" />
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.example.homeisolation.SecondFragment"
-        android:label="ข้อมูลสมาชิก"
+        android:label="แก้ไขข้อมูลส่วนตัว"
         tools:layout="@layout/fragment_second" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.homeisolation.HistoryFragment"
+        android:label="ประวัติการส่งข้อมูล"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.homeisolation.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
 </navigation>

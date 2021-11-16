@@ -81,9 +81,8 @@ class RegisterActivity : AppCompatActivity() {
     }
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
-            val uid = user.uid
             val email = user.email
-            Toast.makeText(this@RegisterActivity,"Welcome: $email your ID is $uid",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@RegisterActivity,"สวัสดี : $email",Toast.LENGTH_SHORT).show()
             val intentSession  = Intent(this,ListActivity::class.java)
             startActivity(intentSession)
         }

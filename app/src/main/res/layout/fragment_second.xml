@@ -19,7 +19,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ข้อมูลสมาชิก"
+            android:text="แก้ไขข้อมูลส่วนตัว"
             android:textSize="38sp" />
 
 

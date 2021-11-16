@@ -43,10 +43,10 @@ class MainActivity : AppCompatActivity() {
 
         buttonLogin.setOnClickListener {
             if(TextUtils.isEmpty(txtEmail.text.toString())){
-                Toast.makeText(applicationContext,"Please Enter your Email!!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"กรุณากรอก Email",Toast.LENGTH_SHORT).show()
             }else {
                 if(TextUtils.isEmpty(txtPassword.text.toString())){
-                    Toast.makeText(applicationContext,"Please Enter your Password!!",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"กรุณากรอกรหัสผ่าน",Toast.LENGTH_SHORT).show()
                 }else {
                     signIn()
                 }
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             updateUI(user)
         }else{
             Log.w("MyApp","Failure Process",task.exception)
-            Toast.makeText(this@MainActivity,"Authentication Failed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity,"ไม่พบข้อมูลบัญชีผู้ใช้", Toast.LENGTH_SHORT).show()
             updateUI(null)
         }
         }
@@ -82,9 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if(user != null){
-            val uid = user.uid
             val email = user.email
-            Toast.makeText(this@MainActivity,"Welcome: $email your ID is $uid", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity,"สวัสดี : $email", Toast.LENGTH_SHORT).show()
             val intentSession  = Intent(this,ListActivity::class.java)
             startActivity(intentSession)
         }
