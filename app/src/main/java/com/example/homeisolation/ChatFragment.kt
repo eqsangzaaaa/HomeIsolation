@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +18,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,6 +44,8 @@ class ChatFragment : Fragment() {
     lateinit var mAuth: FirebaseAuth
     lateinit var database: FirebaseDatabase
     lateinit var user: FirebaseUser
+    lateinit var buttonSend: Button
+    lateinit var txtMessage:EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,18 +66,30 @@ class ChatFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_chat, container, false)
         recyclerViewChat = view.findViewById(R.id.RecyclerViewChat)
+        buttonSend = view.findViewById(R.id.buttonSend)
+        txtMessage = view.findViewById(R.id.chatText)
         recyclerViewChat.layoutManager = LinearLayoutManager(getActivity())
         recyclerViewChat.setHasFixedSize(true)
         arrayList = arrayListOf<ChatModel>()
         getChatData()
+
+        buttonSend.setOnClickListener {
+            val currentDate = SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Date())
+            val databaseReference = database.reference.child("users").child(user.uid).child("chat").push()
+            databaseReference.child("user").setValue("ฉัน")
+            databaseReference.child("message").setValue(txtMessage.text.toString())
+            databaseReference.child("timestamp").setValue(currentDate)
+            txtMessage.setText("")
+        }
         return view
     }
 
     fun getChatData(){
         database.reference.child("users").child(user!!.uid).child("chat").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-
+                arrayList.clear()
                 if(snapshot.exists()){
+
                     for (chatSnapshot in snapshot.children){
                         Log.d("update", "Update success ${chatSnapshot.child("user").value.toString()}")
                         var chat = chatSnapshot.getValue(ChatModel::class.java)

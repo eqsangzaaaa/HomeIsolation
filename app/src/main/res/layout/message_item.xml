@@ -45,6 +45,15 @@
                 android:layout_weight="1"
                 android:text="Hello
 " />
+            <TextView
+                android:id="@+id/chatTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="17/11/21"
+                android:textSize="10dp"
+                android:textAlignment="textEnd"
+                android:layout_marginEnd="1dp"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

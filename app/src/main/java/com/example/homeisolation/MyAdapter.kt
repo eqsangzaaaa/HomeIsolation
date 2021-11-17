@@ -20,6 +20,7 @@ class MyAdapter(private  val chatList: ArrayList<ChatModel>): RecyclerView.Adapt
         val currentitem = chatList[position]
         holder.chatUser.text = currentitem.user
         holder.chatMessage.text = currentitem.message
+        holder.chatTimestamp.text = currentitem.timestamp
     }
 
     override fun getItemCount(): Int {
@@ -29,6 +30,7 @@ class MyAdapter(private  val chatList: ArrayList<ChatModel>): RecyclerView.Adapt
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val chatUser: TextView = itemView.findViewById(R.id.chatUser)
         val chatMessage :TextView = itemView.findViewById(R.id.chatMessage)
+        var chatTimestamp :TextView = itemView.findViewById(R.id.chatTimestamp)
     }
 
 }
