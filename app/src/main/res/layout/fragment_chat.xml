@@ -1,42 +1,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/listViewChat"
+<!--    <ListView-->
+<!--        android:id="@+id/listViewChat"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="80dp">-->
+<!--    </ListView>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewChat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp">
-    </ListView>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        tools:listitem="@layout/message_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <RelativeLayout
         android:id="@+id/form"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:orientation="vertical" >
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
         <EditText
+            android:id="@+id/chatText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/chatText"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/buttonSend" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/buttonSend"
+            android:ems="10"
+            android:inputType="textMultiLine" />
 
         <Button
+            android:id="@+id/buttonSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send"
-            android:id="@+id/buttonSend"
             android:layout_alignBottom="@+id/chatText"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:text="Send" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -8,10 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-
+import com.google.firebase.database.ValueEventListener
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,8 +32,8 @@ class ChatFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var listView: ListView
-    var arrayList: ArrayList<String> = ArrayList()
+    lateinit var recyclerViewChat: RecyclerView
+    lateinit var arrayList: ArrayList<ChatModel>
     var arrayAdapter: ArrayAdapter<String>? = null
 
     lateinit var mAuth: FirebaseAuth
@@ -54,18 +58,34 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_chat, container, false)
-        listView = view.findViewById(R.id.listViewChat)
-        arrayAdapter = ArrayAdapter<String>(view.context, android.R.layout.simple_list_item_1, arrayList)
-
-        database.reference.child("users").child(user!!.uid).child("chat").get().addOnSuccessListener {
-            if(it.exists()){
-                Log.d("firebase", "Got value ${it}")
-
-            }
-        }.addOnFailureListener{
-            Log.e("firebase", "Error getting data", it)
-        }
+        recyclerViewChat = view.findViewById(R.id.RecyclerViewChat)
+        recyclerViewChat.layoutManager = LinearLayoutManager(getActivity())
+        recyclerViewChat.setHasFixedSize(true)
+        arrayList = arrayListOf<ChatModel>()
+        getChatData()
         return view
+    }
+
+    fun getChatData(){
+        database.reference.child("users").child(user!!.uid).child("chat").addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()){
+                    for (chatSnapshot in snapshot.children){
+                        Log.d("update", "Update success ${chatSnapshot.child("user").value.toString()}")
+                        var chat = chatSnapshot.getValue(ChatModel::class.java)
+                        arrayList.add(chat!!)
+                    }
+                    Log.d("update", "Update success ${arrayList.size}")
+                    recyclerViewChat.adapter = MyAdapter(arrayList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     companion object {
