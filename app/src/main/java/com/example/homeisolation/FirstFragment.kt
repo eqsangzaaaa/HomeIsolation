@@ -70,6 +70,26 @@ class FirstFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_first, container, false)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(view.context!!)
+        if (ActivityCompat.checkSelfPermission(
+                view.context,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                view.context,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+        }
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location->
+//                Toast.makeText(view.context,"location : $location", Toast.LENGTH_SHORT).show()
+
+                if (location != null) {
+                    // use your location object
+                    // get latitude , longitude and other info from this
+                }
+
+            }
 
         if(user != null){
             Log.d("FirstFragment", "User Sucess!"+user.email)

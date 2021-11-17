@@ -1,6 +1,8 @@
 package com.example.homeisolation
 
+import android.Manifest
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,6 +10,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -23,10 +26,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var password:String
 
     private var mAuth: FirebaseAuth? = null
+    private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+    private val PERMISSION_REQUEST = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        requestPermissions(permissions, PERMISSION_REQUEST)
         txtEmail = findViewById<EditText>(R.id.txtEmail)
         txtPassword = findViewById<EditText>(R.id.txtPassword)
         buttonLogin = findViewById<Button>(R.id.buttonLogin)
