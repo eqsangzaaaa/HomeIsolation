@@ -1,6 +1,7 @@
 package com.example.homeisolation
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -39,6 +40,8 @@ lateinit var sendData:Button
 
 var heartRateTemp = ""
 var spo2Temp = ""
+var locationTemp = ""
+
 
 lateinit var mAuth: FirebaseAuth
 lateinit var database: FirebaseDatabase
@@ -78,15 +81,12 @@ class FirstFragment : Fragment() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-
+            ActivityCompat.requestPermissions(view.context!! as Activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
         }
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location->
-//                Toast.makeText(view.context,"location : $location", Toast.LENGTH_SHORT).show()
-
                 if (location != null) {
-                    // use your location object
-                    // get latitude , longitude and other info from this
+                    locationTemp= location.latitude.toString() +","+location.longitude.toString()
                 }
 
             }
@@ -140,11 +140,11 @@ class FirstFragment : Fragment() {
         sendData.setOnClickListener {
             val currentDate = SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Date())
             val databaseReference = database.reference.child("users").child(user.uid).child("transaction").push()
-            databaseReference.child("location").setValue("location")
+            databaseReference.child("location").setValue(locationTemp)
             databaseReference.child("timestamp").setValue(currentDate)
             databaseReference.child("heart_rate").setValue(heartRateTemp)
             databaseReference.child("spo2").setValue(spo2Temp)
-            Toast.makeText(view.context,"ส่งข้อมูลเรียบร้อยแล้ว\nHeartRate : $heartRateTemp, SpO2 : $spo2Temp", Toast.LENGTH_SHORT).show()
+            Toast.makeText(view.context,"ส่งข้อมูลเรียบร้อยแล้ว\nHeartRate : $heartRateTemp BPM, SpO2 : $spo2Temp %", Toast.LENGTH_SHORT).show()
         }
         return view
     }
@@ -159,5 +159,7 @@ class FirstFragment : Fragment() {
                 }
             }
     }
+
+
 
 }

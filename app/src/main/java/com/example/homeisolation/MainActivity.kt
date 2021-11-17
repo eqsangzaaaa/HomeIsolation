@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
     private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-    private val PERMISSION_REQUEST = 10
+    private val PERMISSION_REQUEST = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
