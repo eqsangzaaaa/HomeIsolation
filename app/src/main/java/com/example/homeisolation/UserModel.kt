@@ -1,6 +1,6 @@
 package com.example.homeisolation
 
-class User {
+class UserModel {
     var uid =""
     var email=""
     var name=""

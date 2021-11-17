@@ -85,7 +85,7 @@ class RegisterActivity : AppCompatActivity() {
                 user!!.updateProfile(profileUpdate)
                     .addOnCompleteListener(OnCompleteListener<Void?> { task ->
                         if (task.isSuccessful) {
-                            database.reference.child("users").child(user!!.uid).setValue(User(user.uid,user.email,name,address,phone))
+                            database.reference.child("users").child(user!!.uid).setValue(UserModel(user.uid,user.email,name,address,phone))
                             updateUI(user)
                         }else{
                             Log.w("MyApp", "Failure Process", task.exception)
