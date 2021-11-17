@@ -84,12 +84,18 @@ class SecondFragment : Fragment() {
             user!!.updateProfile(profileUpdate)
                 .addOnCompleteListener(OnCompleteListener<Void?> { task ->
                     if (task.isSuccessful) {
-                        database.reference.child("users").child(user!!.uid).setValue(User(user!!.uid,
-                            user!!.email,txtName.text.toString(),txtAddress.text.toString(),txtPhone.text.toString())).addOnCompleteListener {
+                        var userUpdate = mapOf<String,String>(
+                            "name" to txtName.text.toString(),
+                            "address" to txtAddress.text.toString(),
+                            "phone" to txtPhone.text.toString(),
+                        )
+                        database.getReference("users").child(user!!.uid).updateChildren(userUpdate).addOnCompleteListener {
                             if (it.isSuccessful) {
                                 Log.d("update", "Update success ${it}")
                                 Toast.makeText(getActivity(),"แก้ไขข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
                                 getAccount()
+                            }else{
+                                Log.d("update", "Failure ",task.exception)
                             }
                         }
                     }else{
