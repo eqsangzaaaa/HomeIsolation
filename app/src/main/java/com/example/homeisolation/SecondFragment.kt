@@ -50,6 +50,7 @@ class SecondFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideKeyboard(activity as ListActivity)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -69,7 +70,7 @@ class SecondFragment : Fragment() {
         txtPhone = view.findViewById<EditText>(R.id.phone)
         buttonUpdate = view.findViewById<Button>(R.id.buttonUpdate)
         buttonUpdate.setOnClickListener {
-            hideKeyboard()
+            hideKeyboard(activity as ListActivity)
             updateAccount()
         }
         if(user != null){
@@ -140,16 +141,17 @@ class SecondFragment : Fragment() {
             }
     }
 
-    fun Fragment.hideKeyboard() {
-        view?.let { activity?.hideKeyboard(it) }
-    }
 
-    fun Activity.hideKeyboard() {
-        hideKeyboard(currentFocus ?: View(this))
-    }
 
-    fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    private fun hideKeyboard(activity: Activity) {
+        val inputMethodManager =
+            activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        // Check if no view has focus
+        val currentFocusedView = activity.currentFocus
+        currentFocusedView?.let {
+            inputMethodManager.hideSoftInputFromWindow(
+                currentFocusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
     }
 }
