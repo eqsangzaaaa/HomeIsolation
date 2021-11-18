@@ -1,5 +1,6 @@
 package com.example.homeisolation
 
+import android.R.attr
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
@@ -23,6 +24,14 @@ import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import android.text.Editable
+
+import android.R.attr.button
+
+import android.text.TextWatcher
+
+
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -77,9 +86,27 @@ class ChatFragment : Fragment() {
         arrayList = arrayListOf<ChatModel>()
         getChatData()
 
+        buttonSend.setEnabled(false);
+        txtMessage.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.toString().trim { it <= ' ' }.isEmpty()) {
+                    buttonSend.setEnabled(false)
+                } else {
+                    buttonSend.setEnabled(true)
+                }
+            }
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int,
+                after: Int
+            ) {
+            }
+            override fun afterTextChanged(s: Editable) {
+            }
+        })
         buttonSend.setOnClickListener {
             val currentDate = SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Date())
-            val databaseReference = database.reference.child("users").child(user.uid).child("chat").push()
+            val databaseReference =
+                database.reference.child("users").child(user.uid).child("chat").push()
             databaseReference.child("user").setValue("ฉัน")
             databaseReference.child("message").setValue(txtMessage.text.toString())
             databaseReference.child("timestamp").setValue(currentDate)
@@ -95,11 +122,11 @@ class ChatFragment : Fragment() {
                 if(snapshot.exists()){
 
                     for (chatSnapshot in snapshot.children){
-                        Log.d("update", "Update success ${chatSnapshot.child("user").value.toString()}")
+//                        Log.d("update", "Update success ${chatSnapshot.child("user").value.toString()}")
                         var chat = chatSnapshot.getValue(ChatModel::class.java)
                         arrayList.add(chat!!)
                     }
-                    Log.d("update", "Update success ${arrayList.size}")
+//                    Log.d("update", "Update success ${arrayList.size}")
                     recyclerViewChat.adapter = ChatAdapter(arrayList)
                 }
             }

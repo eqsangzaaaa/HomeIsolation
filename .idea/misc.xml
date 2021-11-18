@@ -14,9 +14,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/activity_update_user.xml" value="0.14322916666666666" />
-        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.14496758235374207" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.16770833333333332" />
-        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.24230072463768115" />
         <entry key="app/src/main/res/layout/message_item.xml" value="0.2618766281687716" />
         <entry key="app/src/main/res/layout/messageitem.xml" value="0.15729166666666666" />

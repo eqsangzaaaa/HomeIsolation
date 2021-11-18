@@ -18,9 +18,10 @@ class HistoryAdapter(private  val historyList: ArrayList<HistoryModel>): Recycle
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val currentitem = historyList[position]
-        holder.heart_rate.text = currentitem.heart_rate
-        holder.spo2.text = currentitem.spo2
+        holder.heart_rate.text = "Heart Rate : "+currentitem.heart_rate+" BPM"
+        holder.spo2.text = "SpO2: "+currentitem.spo2+" %"
         holder.timestamp.text = currentitem.timestamp
+        holder.location.text = "Location: "+currentitem.location
     }
 
     override fun getItemCount(): Int {
@@ -31,6 +32,7 @@ class HistoryAdapter(private  val historyList: ArrayList<HistoryModel>): Recycle
         val heart_rate: TextView = itemView.findViewById(R.id.heartRateValue)
         val spo2 :TextView = itemView.findViewById(R.id.spo2Value)
         var timestamp :TextView = itemView.findViewById(R.id.transcationTimestamp)
+        var location: TextView = itemView.findViewById(R.id.locationValue)
 
     }
 

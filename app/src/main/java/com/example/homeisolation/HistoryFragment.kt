@@ -18,6 +18,10 @@ import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.recyclerview.widget.DividerItemDecoration
+
+
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,9 +59,14 @@ class HistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_history, container, false)
-        recyclerViewHistory = view.findViewById(R.id.RecyclerViewHistroy)
+        recyclerViewHistory = view.findViewById(R.id.RecyclerViewHistory)
         recyclerViewHistory.layoutManager = LinearLayoutManager(getActivity())
         recyclerViewHistory.setHasFixedSize(true)
+        recyclerViewHistory.addItemDecoration(
+            DividerItemDecoration(
+                getActivity(),
+                LinearLayoutManager.VERTICAL
+            ))
         arrayList = arrayListOf<HistoryModel>()
         getHistroyData()
 
