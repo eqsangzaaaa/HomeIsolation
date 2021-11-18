@@ -3,7 +3,6 @@ package com.example.homeisolation
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +18,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
-import java.util.*
-import kotlin.collections.HashMap
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,10 +27,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SecondFragment.newInstance] factory method to
+ * Use the [InfoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SecondFragment : Fragment() {
+class InfoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -63,7 +60,7 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_second, container, false)
+        val view =  inflater.inflate(R.layout.fragment_info, container, false)
         user = mAuth!!.currentUser
         txtName = view.findViewById<EditText>(R.id.txtName)
         txtAddress = view.findViewById<EditText>(R.id.address)
@@ -133,7 +130,7 @@ class SecondFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SecondFragment().apply {
+            InfoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

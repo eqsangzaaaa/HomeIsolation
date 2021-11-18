@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.ListView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -101,7 +100,7 @@ class ChatFragment : Fragment() {
                         arrayList.add(chat!!)
                     }
                     Log.d("update", "Update success ${arrayList.size}")
-                    recyclerViewChat.adapter = MyAdapter(arrayList)
+                    recyclerViewChat.adapter = ChatAdapter(arrayList)
                 }
             }
 

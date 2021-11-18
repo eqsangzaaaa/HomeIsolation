@@ -3,11 +3,21 @@ package com.example.homeisolation
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +33,10 @@ class HistoryFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var recyclerViewHistory: RecyclerView
+    lateinit var arrayList: ArrayList<HistoryModel>
+
+    lateinit var database: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +45,8 @@ class HistoryFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        database = FirebaseDatabase.getInstance("https://homeisolationo2auth-default-rtdb.asia-southeast1.firebasedatabase.app/")
     }
 
     override fun onCreateView(
@@ -38,7 +54,38 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        val view =  inflater.inflate(R.layout.fragment_history, container, false)
+        recyclerViewHistory = view.findViewById(R.id.RecyclerViewHistroy)
+        recyclerViewHistory.layoutManager = LinearLayoutManager(getActivity())
+        recyclerViewHistory.setHasFixedSize(true)
+        arrayList = arrayListOf<HistoryModel>()
+        getHistroyData()
+
+        return view
+    }
+
+    fun getHistroyData(){
+        database.reference.child("users").child(user!!.uid).child("transaction").addValueEventListener(object:
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                arrayList.clear()
+                if(snapshot.exists()){
+
+                    for (chatSnapshot in snapshot.children){
+                        Log.d("update", "Update success ${chatSnapshot.child("user").value.toString()}")
+                        var history = chatSnapshot.getValue(HistoryModel::class.java)
+                        arrayList.add(history!!)
+                    }
+                    Log.d("update", "Update success ${arrayList.size}")
+                    recyclerViewHistory.adapter = HistoryAdapter(arrayList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     companion object {

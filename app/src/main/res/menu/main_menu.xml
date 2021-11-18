@@ -11,7 +11,7 @@
             android:title="ประวัติการส่งข้อมูล"/>
         <item
             android:icon="@drawable/ic_baseline_info_24"
-            android:id="@+id/secondFragment"
+            android:id="@+id/infoFragment"
             android:title="แก้ไขข้อมูลส่วนตัว"/>
 
         <item

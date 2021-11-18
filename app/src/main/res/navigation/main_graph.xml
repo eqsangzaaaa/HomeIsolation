@@ -11,10 +11,10 @@
         android:label="ส่งข้อมูล"
         tools:layout="@layout/fragment_first" />
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.example.homeisolation.SecondFragment"
+        android:id="@+id/infoFragment"
+        android:name="com.example.homeisolation.InfoFragment"
         android:label="แก้ไขข้อมูลส่วนตัว"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_info" />
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.homeisolation.HistoryFragment"

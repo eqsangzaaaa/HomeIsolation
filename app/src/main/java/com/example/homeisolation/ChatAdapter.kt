@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(private  val chatList: ArrayList<ChatModel>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class ChatAdapter(private  val chatList: ArrayList<ChatModel>): RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
