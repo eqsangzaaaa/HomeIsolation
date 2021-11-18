@@ -60,7 +60,10 @@ class HistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_history, container, false)
         recyclerViewHistory = view.findViewById(R.id.RecyclerViewHistory)
-        recyclerViewHistory.layoutManager = LinearLayoutManager(getActivity())
+         var linearLayoutManager: LinearLayoutManager = LinearLayoutManager(getActivity())
+        linearLayoutManager.stackFromEnd = true
+        linearLayoutManager.reverseLayout = true
+        recyclerViewHistory.layoutManager = linearLayoutManager
         recyclerViewHistory.setHasFixedSize(true)
         recyclerViewHistory.addItemDecoration(
             DividerItemDecoration(

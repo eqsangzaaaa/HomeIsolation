@@ -29,9 +29,7 @@ import android.text.Editable
 import android.R.attr.button
 
 import android.text.TextWatcher
-
-
-
+import kotlin.math.log
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -89,7 +87,7 @@ class ChatFragment : Fragment() {
         buttonSend.setEnabled(false);
         txtMessage.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().trim { it <= ' ' }.isEmpty()) {
+                if (s.toString().trim().isEmpty()) {
                     buttonSend.setEnabled(false)
                 } else {
                     buttonSend.setEnabled(true)
