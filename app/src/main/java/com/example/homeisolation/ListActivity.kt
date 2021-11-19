@@ -47,7 +47,7 @@ class ListActivity : AppCompatActivity() {
     lateinit var textUsername:TextView
 
     val CHANNEL_ID = "channelID"
-    val CHANNEL_NAME = "channelName"
+    val CHANNEL_NAME = "การแจ้งเตือนทั่วไป"
     val NOTIFICATION_ID = 0
     var notificationTime = 1
 
@@ -82,9 +82,10 @@ class ListActivity : AppCompatActivity() {
 
     fun createNotificationChannel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val channel = NotificationChannel(CHANNEL_ID,CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT).apply {
+            val channel = NotificationChannel(CHANNEL_ID,CHANNEL_NAME, NotificationManager.IMPORTANCE_MAX).apply {
                 lightColor = Color.GREEN
                 enableLights(true)
+                enableVibration(true)
             }
             val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel)
@@ -104,6 +105,8 @@ class ListActivity : AppCompatActivity() {
             .setSmallIcon(R.drawable.ic_baseline_chat_24)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setVibrate(longArrayOf(500, 1000, 500))
 
 
         val notificationManager = NotificationManagerCompat.from(this)
