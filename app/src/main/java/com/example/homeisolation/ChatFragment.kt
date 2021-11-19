@@ -126,6 +126,7 @@ class ChatFragment : Fragment() {
                     }
 //                    Log.d("update", "Update success ${arrayList.size}")
                     recyclerViewChat.adapter = ChatAdapter(arrayList)
+                    recyclerViewChat.scrollToPosition(arrayList.size-1)
                 }
             }
 
