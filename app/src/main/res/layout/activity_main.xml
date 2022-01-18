@@ -20,7 +20,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/uni" />
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -79,11 +83,7 @@
             android:layout_height="wrap_content"
             android:text="ลืมรหัสผ่าน" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/cardiogram" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

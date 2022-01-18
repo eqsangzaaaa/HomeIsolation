@@ -74,6 +74,28 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                 </Button>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="ระดับสีบ่งบอกอาการ"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="สีเขียว ปกติ"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="สีส้ม สังเกตุอาการ"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="สีแดง กรุณาโทร 02 574 5000"/>
 
             </LinearLayout>
 
