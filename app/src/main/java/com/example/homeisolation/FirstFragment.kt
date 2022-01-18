@@ -110,8 +110,8 @@ class FirstFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d("FirstFragment", "User Sucess!"+dataSnapshot.children)
                 var status:Boolean = dataSnapshot.child("status").value as Boolean
+
                 if(status){
-                    view.findViewById<LinearLayout>(R.id.layoutContainer).setBackgroundColor(Color.GREEN)
                     heartRateTemp =  dataSnapshot.child("heart_rate").value.toString()
                     spo2Temp =  dataSnapshot.child("spo2").value.toString()
 
@@ -119,12 +119,21 @@ class FirstFragment : Fragment() {
                     heart_rate.text = "HeartRate "+heartRateTemp.toString() + " BPM"
                     spo2.text = "SpO2 " +spo2Temp.toString()+" %"
 
-                    if(heartRateTemp.toDouble()<60 || heartRateTemp.toDouble()>100 || spo2Temp.toDouble()<=94){
-                        view.findViewById<LinearLayout>(R.id.layoutContainer).setBackgroundColor(Color.YELLOW)
+                    if(heartRateTemp.toDouble()<50 || heartRateTemp.toDouble()>100){
+                        view.findViewById<TextView>(R.id.heart_rate).setTextColor(Color.RED)
+                    }else{
+                        view.findViewById<TextView>(R.id.heart_rate).setTextColor(Color.GREEN)
+                    }
+                    if(spo2Temp.toDouble()<90){
+                        view.findViewById<TextView>(R.id.spo2).setTextColor(Color.RED)
+                    }else if(spo2Temp.toDouble()<95){
+                        view.findViewById<TextView>(R.id.spo2).setTextColor(Color.rgb(255,165,0))
+                    }else{
+                        view.findViewById<TextView>(R.id.spo2).setTextColor(Color.GREEN)
+
                     }
                     sendData.isEnabled = true
                 }else{
-                    view.findViewById<LinearLayout>(R.id.layoutContainer).setBackgroundColor(Color.WHITE)
                     txtStatus.text = "วางนิ้วที่เครื่อง 'Arduino' เพื่อวัดค่า"
                     heart_rate.text = "HeartRate"
                     spo2.text = "SpO2"

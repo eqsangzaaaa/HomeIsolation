@@ -8,7 +8,8 @@
     >
     <LinearLayout
         android:layout_width="fill_parent" android:layout_height="fill_parent"
-        android:id="@+id/layoutContainer" android:orientation="horizontal">
+        android:id="@+id/layoutContainer" android:orientation="horizontal"
+        android:background="@color/white">
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
@@ -35,7 +36,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:background="@color/white">
 
                     <TextView
                         android:id="@+id/heart_rate"
@@ -43,7 +45,7 @@
                         android:layout_height="200dp"
                         android:text="HeartRate"
                         android:gravity="center"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         android:textSize="35dp"
                         android:padding="10dp"
                         android:background="@drawable/ic_baseline_circle_24"
@@ -61,7 +63,7 @@
                         android:text="SpO2"
                         android:padding="5dp"
                         android:textSize="25dp"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#000000"
                         />
 
                 </RelativeLayout>
