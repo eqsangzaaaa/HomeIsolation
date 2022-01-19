@@ -66,10 +66,12 @@ class InfoFragment : Fragment() {
         txtAddress = view.findViewById<EditText>(R.id.address)
         txtPhone = view.findViewById<EditText>(R.id.phone)
         buttonUpdate = view.findViewById<Button>(R.id.buttonUpdate)
+
         buttonUpdate.setOnClickListener {
             hideKeyboard(activity as ListActivity)
             updateAccount()
         }
+
         if(user != null){
             getAccount()
         }

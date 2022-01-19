@@ -69,26 +69,104 @@
                 </Button>
                 <TextView
                     android:layout_width="match_parent"
-                    android:gravity="center"
                     android:padding="5dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="ระดับสีบ่งบอกอาการ"/>
+                    android:text="ระดับสีของ Spo2 บ่งบอกอาการ"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                   >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#00ff00"
+                        android:text="สีเขียว"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" ปกติ"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffa500"
+                        android:text="สีส้ม"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" สังเกตุอาการ
+หากมีอาการ แน่นหน้าอก, หายใจเร็ว, หายใจไม่อิ่ม, รู้สึกสับสนมึนงง \nกรุณาโทร 02 574 5000"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ff0000"
+                        android:text="สีแดง"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" กรุณาโทร 02 574 5000"/>
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
-                    android:gravity="center"
+                    android:padding="5dp"
                     android:layout_height="wrap_content"
-                    android:text="สีเขียว ปกติ"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="ระดับสีของ HeartRate บ่งบอกอาการ"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="สีส้ม สังเกตุอาการ"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#00ff00"
+                        android:text="สีเขียว"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" ปกติ"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="สีแดง กรุณาโทร 02 574 5000"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffa500"
+                        android:text="สีส้ม"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" สังเกตุอาการ 5-10 นาที แล้ววัดซ้ำ"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ff0000"
+                        android:text="สีแดง"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" กรุณาโทร 02 574 5000"/>
+                </LinearLayout>
 
             </LinearLayout>
 

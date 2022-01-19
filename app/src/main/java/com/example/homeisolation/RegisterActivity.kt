@@ -52,8 +52,9 @@ class RegisterActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance("https://homeisolationo2auth-default-rtdb.asia-southeast1.firebasedatabase.app/")
+
         buttonSubmit.setOnClickListener {
-            if(TextUtils.isEmpty(txtEmailCreate.text.toString()) || TextUtils.isEmpty(txtPasswordCreate.text.toString())){
+            if(TextUtils.isEmpty(txtEmailCreate.text.toString()) || TextUtils.isEmpty(txtPasswordCreate.text.toString())){ //Email-กับ password ห้ามว่าง
                 Toast.makeText(applicationContext,"Please Enter your E-mail and password",Toast.LENGTH_SHORT).show()
             }else {
                 createAccount()
@@ -76,7 +77,7 @@ class RegisterActivity : AppCompatActivity() {
         phone = txtPhone.text.toString()
 
         mAuth!!.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
+            if (task.isSuccessful) {//รหัสผ่านต้องยาว8ตัว
 
                 Log.d("MyApp", "Create New User Success!")
                 val user = mAuth!!.currentUser

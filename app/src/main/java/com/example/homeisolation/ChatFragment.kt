@@ -105,7 +105,7 @@ class ChatFragment : Fragment() {
             val currentDate = SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Date())
             val databaseReference =
                 database.reference.child("users").child(user.uid).child("chat").push()
-            databaseReference.child("user").setValue("patient")
+            databaseReference.child("user").setValue(user.displayName)
             databaseReference.child("message").setValue(txtMessage.text.toString())
             databaseReference.child("timestamp").setValue(currentDate)
             txtMessage.setText("")

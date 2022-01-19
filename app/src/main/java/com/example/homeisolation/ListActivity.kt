@@ -91,7 +91,7 @@ class ListActivity : AppCompatActivity() {
             manager.createNotificationChannel(channel)
         }
     }
-
+    //  รับค่าแจ้งเตือน
     fun getChatData(){
         var message = ""
         val intent = Intent(this, ListActivity::class.java)
